@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {AppLoading} from 'expo';
 import * as Font from 'expo-font';
 
@@ -19,7 +19,9 @@ export default function App() {
     return <AppLoading startAsync={fetchFonts} onFinish={() => setFontLoaded(true)}/>;
   }
 
-  return <MealsNavigator />;
+  return (
+    <MealsNavigator />
+  );
 }
 
 const styles = StyleSheet.create({

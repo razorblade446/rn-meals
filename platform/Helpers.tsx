@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View, Image} from 'react-native';
+import {Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View, Image, StatusBar} from 'react-native';
 import Colors from '../constants/Colors';
 import {BlurView} from 'expo-blur';
 
@@ -19,19 +19,19 @@ const navigationOptionsFn = () => {
   return Platform.select({
     ios: {
       headerTintColor: Colors.primaryColor,
-      headerStyle: {
+      /*headerStyle: {
         backgroundColor: 'transparent'
       },
       headerTransparent: true,
-      headerBackground: () => <BlurView tint='light' intensity={50} style={StyleSheet.absoluteFill}/>
+      headerBackground: () => <BlurView tint='light' intensity={50} style={StyleSheet.absoluteFill}/>*/
     },
     android: {
       headerStyle: {
         backgroundColor: Colors.primaryColor,
       },
       headerTintColor: 'white',
-      headerTransparent: true,
-      headerBackground: () => <BlurView tint='light' intensity={100} style={StyleSheet.absoluteFill}/>
+      /*headerTransparent: true,
+      headerBackground: () => <BlurView tint='light' intensity={100} style={StyleSheet.absoluteFill}/>*/
     }
   });
 };
@@ -39,16 +39,18 @@ const navigationOptionsFn = () => {
 export const NavigationOptions = navigationOptionsFn();
 
 const screenStyleFn = () => {
+  console.log('Header: ', StatusBar.currentHeight);
   let baseStyle: any = {
-    paddingTop: 80
+    flex: 1
+    // paddingTop: StatusBar.currentHeight
   };
 
-  if (Platform.OS === 'ios') {
+  /*if (Platform.OS === 'ios') {
     baseStyle = {
       ...baseStyle,
       paddingTop: 60
     };
-  }
+  }*/
 
   return baseStyle;
 };
