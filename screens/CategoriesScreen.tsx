@@ -9,39 +9,41 @@ import {enableScreens} from 'react-native-screens';
 
 import {ScreenStyle, TouchableImpl} from '../platform/Helpers';
 import {CATEGORIES} from '../data/dummy-data';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 enableScreens();
 
 const CategoriesScreen = (props: any) => {
+  const onSelect = (categoryId: string) => {
+    props.navigation.navigate({
+      routeName: 'CategoryMeals', params: {categoryId}
+    });
+  };
 
   const renderCategoryItem = (itemData: any) => {
     return (
-      <View style={styles.gridItem}>
-        <TouchableImpl onPress={() => {
-          props.navigation.navigate({
-            routeName: 'CategoryMeals', params: {
-              categoryId: itemData.item.id
-            }
-          });
-        }}>
-          <View style={styles.gridBox}>
-            <Text>{itemData.item.name}</Text>
-          </View>
-        </TouchableImpl>
-      </View>);
+      <CategoryGridTile {...itemData.item}
+                        onSelect={onSelect}/>);
   };
 
   return (
-    <FlatList contentContainerStyle={styles.screen}
-              data={CATEGORIES}
+    <FlatList data={CATEGORIES}
               numColumns={2}
               renderItem={renderCategoryItem}/>
   );
 };
 
+CategoriesScreen.navigationOptions = (navigationData: any) => {
+  return {
+    headerTitle: 'Meal Categories'
+  };
+};
+
 const styles = StyleSheet.create({
   screen: {
-    ...ScreenStyle
+    ...ScreenStyle,
+    flex: 1,
+    backgroundColor: 'red'
   },
   gridItem: {
     flex: 1,

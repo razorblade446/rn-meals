@@ -20,7 +20,7 @@ export default function App() {
   }
 
   return (
-    <MealsNavigator />
+    <MealsNavigator style={styles.container}/>
   );
 }
 

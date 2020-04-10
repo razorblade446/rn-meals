@@ -41,7 +41,7 @@ export const NavigationOptions = navigationOptionsFn();
 const screenStyleFn = () => {
   console.log('Header: ', StatusBar.currentHeight);
   let baseStyle: any = {
-    flex: 1
+    // flex: 1
     // paddingTop: StatusBar.currentHeight
   };
 
