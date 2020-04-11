@@ -16,8 +16,18 @@ const touchableImplFn = () => {
 export const TouchableImpl = touchableImplFn();
 
 const navigationOptionsFn = () => {
+  const baseNavigationOptions = {
+    headerTitleStyle: {
+      fontFamily: 'open-sans-bold'
+    },
+    headerBackTitleStyle: {
+      fontFamily: 'open-sans'
+    }
+  };
+
   return Platform.select({
     ios: {
+      ...baseNavigationOptions,
       headerTintColor: Colors.primaryColor,
       /*headerStyle: {
         backgroundColor: 'transparent'
@@ -26,6 +36,7 @@ const navigationOptionsFn = () => {
       headerBackground: () => <BlurView tint='light' intensity={50} style={StyleSheet.absoluteFill}/>*/
     },
     android: {
+      ...baseNavigationOptions,
       headerStyle: {
         backgroundColor: Colors.primaryColor,
       },
@@ -40,6 +51,9 @@ export const NavigationOptions = navigationOptionsFn();
 
 const navigationTabOptionsFn = () => {
   return {
+    labelStyle: {
+      fontFamily: 'open-sans'
+    },
     activeTintColor: Colors.accentColor
   }
 };
@@ -64,3 +78,24 @@ const screenStyleFn = () => {
 };
 
 export const ScreenStyle = screenStyleFn();
+
+const thumbColorFn = () => {
+  return Platform.OS === 'android' ? Colors.primaryColor : ''
+}
+
+export const ThumbColor = thumbColorFn();
+
+const trackColorFn = () => {
+  return Platform.select({
+    ios: {
+      false: '',
+      true: Colors.primaryColor
+    },
+    android: {
+      false: Colors.primaryLightGrayedColor,
+      true: Colors.primaryGrayedColor
+    }
+  });
+}
+
+export const TrackColor = trackColorFn();

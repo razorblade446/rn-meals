@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Text, ImageBackground} from 'react-native';
+import {View, StyleSheet, ImageBackground} from 'react-native';
 import {TouchableImpl} from '../platform/Helpers';
+import DefaultText from './DefaultText';
 
 const MealItem = (props: any) => {
   return (
@@ -9,13 +10,13 @@ const MealItem = (props: any) => {
         <View>
           <View style={{...styles.mealRow, ...styles.mealHeader}}>
             <ImageBackground source={{uri: props.imageUrl}} style={styles.bgImage}>
-              <Text style={styles.title}>{props.title}</Text>
+              <DefaultText style={styles.title}>{props.title}</DefaultText>
             </ImageBackground>
           </View>
           <View style={{...styles.mealRow, ...styles.mealDetails}}>
-            <Text>{props.duration} m</Text>
-            <Text>{props.complexity.toUpperCase()}</Text>
-            <Text>{props.affordability.toUpperCase()}</Text>
+            <DefaultText>{props.duration} m</DefaultText>
+            <DefaultText>{props.complexity.toUpperCase()}</DefaultText>
+            <DefaultText>{props.affordability.toUpperCase()}</DefaultText>
           </View>
         </View>
       </TouchableImpl>

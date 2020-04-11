@@ -10,6 +10,8 @@ import {enableScreens} from 'react-native-screens';
 import {ScreenStyle, TouchableImpl} from '../platform/Helpers';
 import {CATEGORIES} from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import CustomHeaderButton from '../components/HeaderButton';
 
 enableScreens();
 
@@ -35,7 +37,12 @@ const CategoriesScreen = (props: any) => {
 
 CategoriesScreen.navigationOptions = (navigationData: any) => {
   return {
-    headerTitle: 'Meal Categories'
+    headerTitle: 'Meal Categories',
+    headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+      <Item title="Menu" iconName='ios-menu' onPress={() => {
+        navigationData.navigation.toggleDrawer();
+      }}/>
+    </HeaderButtons>
   };
 };
 
