@@ -38,6 +38,14 @@ const navigationOptionsFn = () => {
 
 export const NavigationOptions = navigationOptionsFn();
 
+const navigationTabOptionsFn = () => {
+  return {
+    activeTintColor: Colors.accentColor
+  }
+};
+
+export const NavigationTabOptions = navigationTabOptionsFn();
+
 const screenStyleFn = () => {
   console.log('Header: ', StatusBar.currentHeight);
   let baseStyle: any = {
