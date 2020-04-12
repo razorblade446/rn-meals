@@ -1,17 +1,29 @@
 import React from 'react';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import {View, StyleSheet} from 'react-native';
+import {useSelector} from 'react-redux';
 
 import MealList from '../components/MealList';
-import {MEALS} from '../data/dummy-data';
 import CustomHeaderButton from '../components/HeaderButton';
+import DefaultText from '../components/DefaultText';
 
 const FavoritesScreen = (props: any) => {
-  const onSelectMeal = (mealId: string) => {
-    props.navigation.navigate('MealDetail', {mealId});
+  const availableMeals = useSelector((state: any) => state.meals.favoriteMeals);
+
+  const onSelectMeal = (mealId: string, mealTitle: string) => {
+    props.navigation.navigate('MealDetail', {mealId, mealTitle, isFavoriteMeal: true});
   };
 
+  if (availableMeals.length === 0 || !availableMeals) {
+    return (
+      <View style={styles.screen}>
+        <DefaultText>No Favorites selected, start and add something...</DefaultText>
+      </View>
+    );
+  }
+
   return (
-    <MealList meals={MEALS} onSelectMeal={onSelectMeal}/>
+    <MealList meals={availableMeals} onSelectMeal={onSelectMeal}/>
   );
 };
 
@@ -25,5 +37,13 @@ FavoritesScreen.navigationOptions = (navigationData: any) => {
     </HeaderButtons>
   }
 };
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
 export default FavoritesScreen;

@@ -6,7 +6,7 @@ import DefaultText from './DefaultText';
 const MealItem = (props: any) => {
   return (
     <View style={styles.mealItem}>
-      <TouchableImpl onPress={() => props.onSelect(props.id)}>
+      <TouchableImpl onPress={() => props.onSelectMeal(props.id, props.title)}>
         <View>
           <View style={{...styles.mealRow, ...styles.mealHeader}}>
             <ImageBackground source={{uri: props.imageUrl}} style={styles.bgImage}>

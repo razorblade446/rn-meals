@@ -4,14 +4,14 @@ import MealItem from './MealItem';
 
 const MealList = (props: any) => {
 
-  const onSelectMeal = (mealId: string) => {
-    props.onSelectMeal(mealId);
-  };
+  /*const onSelectMeal = (mealId: string, mealTitle: string) => {
+    props.onSelectMeal(mealId, mealTitle);
+  };*/
 
   const renderMealItem = (itemData: any) => {
     return (
       <MealItem {...itemData.item}
-                onSelect={onSelectMeal}/>
+                onSelectMeal={props.onSelectMeal}/>
     );
   };
   return (
